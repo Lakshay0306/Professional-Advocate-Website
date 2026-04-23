@@ -34,6 +34,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -867,24 +868,27 @@ section { padding: 90px 0; }
   align-items: start;
 }
 
-.about-photo {
+.about-photo-img-wrapper {
   position: relative;
+  z-index: 1;
 }
 
-.about-photo img {
+.about-photo-img-wrapper img {
   border-radius: var(--radius-lg);
   width: 100%;
+  height: auto;
   aspect-ratio: 3/4;
   object-fit: cover;
+  display: block;
 }
 
-.about-photo::before {
+.about-photo-img-wrapper::before {
   content: '';
   position: absolute;
   top: -12px;
   left: -12px;
-  right: 12px;
-  bottom: 12px;
+  right: -12px;
+  bottom: -12px;
   border: 3px solid var(--gold);
   border-radius: var(--radius-lg);
   z-index: -1;
@@ -1176,10 +1180,12 @@ section { padding: 90px 0; }
   margin-bottom: 4px;
 }
 
-.info-item p {
+.info-item p, .info-item a {
   color: rgba(255,255,255,0.75);
   font-size: 0.88rem;
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .info-divider {
@@ -1363,7 +1369,7 @@ section { padding: 90px 0; }
 }
 
 .fci-icon { color: var(--gold); font-size: 0.95rem; margin-top: 2px; min-width: 18px; }
-.fci-text { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.fci-text { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; overflow-wrap: break-word; word-break: break-word; }
 
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.08);
@@ -1385,9 +1391,11 @@ section { padding: 90px 0; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
+  .grid-3, .cases-grid, .practice-grid { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .stat-item:nth-last-child(-n+2) { border-bottom: none; }
   .about-bio { grid-template-columns: 300px 1fr; gap: 40px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .contact-layout { grid-template-columns: 1fr; }
@@ -1398,10 +1406,10 @@ section { padding: 90px 0; }
   section { padding: 60px 0; }
 
   .nav-links {
-    position: fixed;
-    top: 72px;
+    position: absolute;
+    top: 100%;
     left: 0;
-    right: 0;
+    width: 100%;
     background: var(--white);
     flex-direction: column;
     align-items: flex-start;
@@ -1416,7 +1424,12 @@ section { padding: 90px 0; }
 
   .nav-links.open { max-height: 500px; }
 
+  .nav-links li {
+    width: 100%;
+  }
+
   .nav-links a {
+    display: block;
     padding: 14px 24px;
     width: 100%;
     border-bottom: 1px solid var(--light-gray);
@@ -1425,9 +1438,14 @@ section { padding: 90px 0; }
 
   .nav-links a::after { display: none; }
 
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
   .nav-cta {
-    margin: 12px 24px;
-    width: calc(100% - 48px);
+    display: flex !important;
+    margin: 16px 24px 24px;
+    width: auto !important;
     justify-content: center;
   }
 
@@ -1442,10 +1460,14 @@ section { padding: 90px 0; }
   .services-grid,
   .cases-grid,
   .practice-grid,
+  .stats-grid,
   .memberships-grid { grid-template-columns: 1fr; }
 
+  .stat-item { border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+  .stat-item:last-child { border-bottom: none !important; }
+
   .about-bio { grid-template-columns: 1fr; }
-  .about-photo { max-width: 320px; }
+  .about-photo { max-width: 320px; margin: 0 auto; }
 
   .form-row { grid-template-columns: 1fr; }
 
@@ -1462,12 +1484,7 @@ section { padding: 90px 0; }
   .filter-tabs { gap: 8px; }
   .filter-btn { padding: 8px 16px; font-size: 0.78rem; }
 }
-.about-photo img {
-  width: 350px;        /* yahan size control kar */
-  height: auto;        /* height auto rakho */
-  object-fit: cover;   /* image stretch na ho */
-  border-radius: 12px; /* thoda premium look */
-}
+/* Removed hardcoded about-photo img width */
 /* ============================================================
    ACTIVE MATTERS — PENDING STATUS
    ============================================================ */

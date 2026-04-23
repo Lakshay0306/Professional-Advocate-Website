@@ -247,15 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Hamburger menu
-  const hamburger = document.querySelector('.hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function () {
-      this.classList.toggle('open');
-      navLinks.classList.toggle('open');
-    });
-  }
+
 });
 /* ---- Keyframe for fade-in used by filter ---- */
 const style = document.createElement('style');
