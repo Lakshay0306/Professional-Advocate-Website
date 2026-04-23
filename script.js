@@ -43,30 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ---- Portfolio filter tabs ---- */
-  const filterBtns  = document.querySelectorAll('.filter-btn');
-  const caseCards   = document.querySelectorAll('.case-card');
-
-  if (filterBtns.length && caseCards.length) {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function () {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-
-        const filter = this.dataset.filter;
-
-        caseCards.forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = 'block';
-            card.style.animation = 'fadeIn 0.35s ease forwards';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  }
-
   /* ---- Counter animation on stats bar ---- */
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
@@ -195,60 +171,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 // ============================================================
-// PORTFOLIO FILTER — Works for BOTH Active & Concluded sections
+// PORTFOLIO ACTIVE MATTERS FILTER
 // ============================================================
 document.addEventListener('DOMContentLoaded', function () {
-
-  // Concluded cases filter (data-filter)
-  const concludedBtns = document.querySelectorAll('[data-filter]');
-  const concludedCards = document.querySelectorAll('.case-card[data-category]');
-
-  concludedBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-      concludedBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      this.classList.add('active');
-      this.setAttribute('aria-selected', 'true');
-
-      const filter = this.getAttribute('data-filter');
-      concludedCards.forEach(card => {
-        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-          card.classList.remove('hide');
-        } else {
-          card.classList.add('hide');
-        }
-      });
-    });
-  });
-
-  // Active cases filter (data-active-filter)
-  const activeBtns = document.querySelectorAll('[data-active-filter]');
+  const activeBtns = document.querySelectorAll('.filter-btn[data-active-filter]');
   const activeCards = document.querySelectorAll('.case-card[data-active-category]');
 
-  activeBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-      activeBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      this.classList.add('active');
-      this.setAttribute('aria-selected', 'true');
+  if (activeBtns.length && activeCards.length) {
+    activeBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        activeBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
 
-      const filter = this.getAttribute('data-active-filter');
-      activeCards.forEach(card => {
-        if (filter === 'all' || card.getAttribute('data-active-category') === filter) {
-          card.classList.remove('hide');
-        } else {
-          card.classList.add('hide');
-        }
+        const filter = this.getAttribute('data-active-filter');
+        
+        activeCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-active-category') === filter) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.35s ease forwards';
+          } else {
+            card.style.display = 'none';
+            card.style.animation = 'none';
+          }
+        });
       });
     });
-  });
-
-
+  }
 });
+
 /* ---- Keyframe for fade-in used by filter ---- */
 const style = document.createElement('style');
 style.textContent = `@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }`;

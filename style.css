@@ -1400,10 +1400,6 @@ section { padding: 90px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .contact-layout { grid-template-columns: 1fr; }
   .contact-info-card { position: static; }
-}
-
-@media (max-width: 768px) {
-  section { padding: 60px 0; }
 
   .nav-links {
     position: absolute;
@@ -1450,7 +1446,10 @@ section { padding: 90px 0; }
   }
 
   .hamburger { display: flex; }
+}
 
+@media (max-width: 768px) {
+  section { padding: 60px 0; }
   .hero-trust { flex-wrap: wrap; gap: 20px; }
   .hero-trust-divider { display: none; }
 
