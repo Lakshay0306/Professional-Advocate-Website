@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 'phone',       errId: 'phoneErr',   msg: 'Please enter a valid 10-digit phone number.',
           validate: v => /^[6-9]\d{9}$/.test(v.replace(/\s/g,'')) },
         { id: 'email',       errId: 'emailErr',   msg: 'Please enter a valid email address.',
-          validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), required: false },
+          validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
         { id: 'matter',      errId: 'matterErr',  msg: 'Please select a legal matter type.' },
         { id: 'message',     errId: 'msgErr',     msg: 'Please describe your legal matter (min 20 chars).',
           validate: v => v.trim().length >= 20 },
@@ -142,10 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (valid) {
-        const successMsg = document.getElementById('formSuccess');
-        if (successMsg) successMsg.classList.add('show');
-        contactForm.reset();
-        setTimeout(() => successMsg && successMsg.classList.remove('show'), 5000);
+        // Force native form submission so FormSubmit activation page appears
+        contactForm.submit();
       }
     });
 
