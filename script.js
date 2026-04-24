@@ -142,8 +142,31 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       if (valid) {
-        // Force native form submission so FormSubmit activation page appears
-        contactForm.submit();
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending...';
+        submitBtn.disabled = true;
+
+        fetch('https://formsubmit.co/ajax/advocatebbsmaur@gmail.com', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          const successMsg = document.getElementById('formSuccess');
+          if (successMsg) successMsg.classList.add('show');
+          contactForm.reset();
+          setTimeout(() => successMsg && successMsg.classList.remove('show'), 5000);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('There was an issue sending your message. Please try again or contact us directly.');
+        })
+        .finally(() => {
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+        });
       }
     });
 
