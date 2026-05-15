@@ -1458,7 +1458,27 @@ section { padding: 90px 0; }
 
 @media (max-width: 768px) {
   section { padding: 60px 0; }
-  .hero-trust { flex-wrap: wrap; gap: 20px; }
+  
+  .home-hero {
+    min-height: 85vh;
+    text-align: center;
+    padding-top: 100px;
+  }
+  
+  .home-hero::after {
+    width: 100%;
+    mask-image: none;
+    -webkit-mask-image: none;
+    background: linear-gradient(rgba(17, 40, 80, 0.75), rgba(17, 40, 80, 0.75)), url('bb.jpeg') no-repeat center center / cover;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .hero-btns { justify-content: center; }
+  .hero-trust { justify-content: center; flex-wrap: wrap; gap: 20px; }
   .hero-trust-divider { display: none; }
 
   .grid-2,
