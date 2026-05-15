@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---- Active nav link by current page ---- */
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').pop() || '/';
   document.querySelectorAll('.nav-links a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    if (href === currentPage || (currentPage === '/' && (href === '/' || href === 'index.html'))) {
       link.classList.add('active');
     }
   });
