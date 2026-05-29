@@ -1,0 +1,7 @@
+# Force HTTPS and non-www domain
+https://www.bharatbhushansingla.me/* https://bharatbhushansingla.me/:splat 301!
+http://www.bharatbhushansingla.me/* https://bharatbhushansingla.me/:splat 301!
+http://bharatbhushansingla.me/* https://bharatbhushansingla.me/:splat 301!
+
+# Redirect index.html to root
+/index.html / 301!
