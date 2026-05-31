@@ -13,7 +13,7 @@ Welcome to the official portfolio and professional website repository for **Advo
 This website serves as the digital presence for Advocate Bharat Bhushan Singla, showcasing his expertise, practice areas, portfolio of cases, and providing a seamless way for clients to book consultations. It is designed to be highly professional, responsive, and easy to navigate for clients seeking legal counsel.
 
 ### 🔗 Live Preview
-*(Add your live website URL here, e.g., https://bharatbhushansingla.me/)*
+*(live website URL here, https://bharatbhushansingla.me/)*
 
 ---
 
