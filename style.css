@@ -193,7 +193,7 @@ section { padding: 90px 0; }
 .page-hero {
   background: linear-gradient(135deg, rgba(11, 40, 80, 0.95) 0%, rgba(26, 60, 110, 0.8) 100%), url('bb.jpeg');
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 45%;
   padding: 80px 0 70px;
   position: relative;
   overflow: hidden;
